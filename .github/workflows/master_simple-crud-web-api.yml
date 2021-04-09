@@ -21,6 +21,9 @@ jobs:
       with:
         dotnet-version: '5.0.x'
 
+    - name: Clean nuget packages
+      run: dotnet clean && dotnet nuget locals all --clear
+      
     - name: Build with dotnet
       run: dotnet build --configuration Release
 

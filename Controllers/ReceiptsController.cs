@@ -54,16 +54,16 @@ namespace SimpleCrudAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            //try
-            //{
+            try
+            {
                 var user = _securityHelper.GetCurrentUser(HttpContext);
                 var receipts = _repo.GetAll().Where(r => r.UserID == user.ID).OrderByDescending(r => r.ID);
                 return Ok(BuildResponse(receipts));
-            //}
-            //catch
-            //{
-            //    return ReturnUserFriendlyError(Errors.Unknown);
-            //}
+            }
+            catch
+            {
+                return ReturnUserFriendlyError(Errors.Unknown);
+            }
         }
 
         [HttpPost]

@@ -33,7 +33,12 @@ namespace SimpleCrudAPI.Controllers
 
                 if (user == null)
                 {
-                    _repo.DeleteUserByEmail(parameters.Email);
+                    try
+                    {
+                        await _repo.DeleteUserByEmail(parameters.Email);
+                    }
+                    catch { }
+
                     return ReturnUserFriendlyError(Errors.InvalidCredentials);
                 }
                     

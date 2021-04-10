@@ -15,7 +15,7 @@ namespace SimpleCrudAPI.Models
         public SimpleCrudDBContext(DbContextOptions<SimpleCrudDBContext> options) 
             : base(options)
         {
-            
+            Database.Migrate();
         }
     }
 }

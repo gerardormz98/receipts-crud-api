@@ -12,9 +12,10 @@ namespace SimpleCrudAPI.Models
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public SimpleCrudDBContext(DbContextOptions<SimpleCrudDBContext> options) 
+            : base(options)
         {
-            optionsBuilder.UseSqlite("Data Source=SimpleCrudDB.db");
+            
         }
     }
 }

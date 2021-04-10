@@ -60,7 +60,8 @@ namespace SimpleCrudAPI
                         };
                     });
 
-            services.AddEntityFrameworkSqlite().AddDbContext<SimpleCrudDBContext>(options => { options.UseSqlite($"Data Source={Environment.ContentRootPath}\\SimpleCrudDB.db"); });
+            string basePath = String.IsNullOrEmpty(Environment.WebRootPath) ? Environment.ContentRootPath : Environment.WebRootPath;
+            services.AddEntityFrameworkSqlite().AddDbContext<SimpleCrudDBContext>(options => { options.UseSqlite($"Data Source={basePath}\\SimpleCrudDB.db"); });
 
             services.AddSingleton<IFirebaseAuthProvider>(new FirebaseAuthProvider(new FirebaseConfig(Configuration.GetValue<string>("Firebase:API_Key"))));
 

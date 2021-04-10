@@ -134,7 +134,7 @@ namespace SimpleCrudAPI.Controllers
                     else
                     {
                         _repo.Delete(user.ID);
-                        await _fireRepo.DeleteUserByCorreo(user.Email);
+                        await _fireRepo.DeleteUserByEmail(user.Email);
                         return NoContent();
                     }
                 }

@@ -37,7 +37,7 @@ namespace SimpleCrudAPI.Repositories
             await _authProvider.DeleteUser(token);
         }
 
-        public async Task DeleteUserByCorreo(string email)
+        public async Task DeleteUserByEmail(string email)
         {
             var user = await FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance.GetUserByEmailAsync(email);
             await FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance.DeleteUserAsync(user.Uid);

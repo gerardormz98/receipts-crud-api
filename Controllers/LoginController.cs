@@ -32,8 +32,16 @@ namespace SimpleCrudAPI.Controllers
                 var user = _userRepo.Get(parameters.Email);
 
                 if (user == null)
-                    return ReturnUserFriendlyError(Errors.InvalidCredentials);
+                {
+                    try
+                    {
+                        await _repo.DeleteUserByEmail(parameters.Email);
+                    }
+                    catch { }
 
+                    return ReturnUserFriendlyError(Errors.InvalidCredentials);
+                }
+                    
                 var token = await _repo.GenerateUserToken(parameters.Email, parameters.Password);
 
                 return Ok(new LoginResponse(user.ID, user.Email, user.IsAdmin, token));
